@@ -1,4 +1,4 @@
-# Analytics and Machine Learning
+# EMEA RHTE 2019: Learn how to run analytics and ML in OCP4 and Ceph Object storage with Rook.io
 
 ## Prequisites
 
@@ -18,4 +18,4 @@ cluster with an object storage service. Instructions [here](instructions/02-Rook
 
 ## Jupyter Notebook
 
-The final task is to deploy a Jupyter Notebook
+The final task is to deploy a Jupyter Notebook. Instructions [here](instructions/03-Jupyter-Notebook.md).
