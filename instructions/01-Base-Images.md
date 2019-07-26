@@ -31,7 +31,7 @@ oc new-build --name=openshift-spark-py36 \
 oc start-build openshift-spark-py36
 ```
 
-## Watch openshift-spark-py36 build
+## Watch openshift-spark-py36 build (around 7 min)
 ```
 oc logs -f bc/openshift-spark-py36
 ```
@@ -49,7 +49,7 @@ oc new-build --name=jupyter-notebook \
              --strategy=docker
 ```
 
-## Watch notebook build
+## Watch notebook build (around 18 min)
 ```
 oc logs -f buildconfig/jupyter-notebook
 ```
