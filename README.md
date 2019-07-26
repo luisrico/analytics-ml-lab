@@ -5,6 +5,15 @@
 * OpenShift 4 environment
 * Administrative access for Rook-Ceph Operator
 
+## Initial step
+
+Log in the clientvm through ssh with the credentials provided and git clone this 
+repository to get all yml files for creating rook operator, ceph clusters, and jupyter notebook.
+
+```
+git clone https://github.com/luisrico/analytics-ml-lab.git
+``` 
+
 ## Base Images
 
 The first task is to build a set of images to use for deploying Apache Spark
