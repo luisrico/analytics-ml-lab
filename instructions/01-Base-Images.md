@@ -1,5 +1,11 @@
 # Notebook Images
 
+Create a new project to put our analytics stuff: 
+
+```
+oc new-project my-analytics
+```
+
 ## Create UBI openshift-spark-py36-inc build
 
 ```
