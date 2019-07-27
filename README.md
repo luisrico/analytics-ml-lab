@@ -5,7 +5,13 @@
 * OpenShift 4 environment
 * Administrative access for Rook-Ceph Operator
 
-## Initial step
+## Initial steps
+
+## Remove cpu and memory limits from default quota
+
+```
+oc edit userquota default
+```
 
 Log in the clientvm through ssh with the credentials provided and git clone this 
 repository to get all yml files for creating rook operator, ceph clusters, and jupyter notebook.
