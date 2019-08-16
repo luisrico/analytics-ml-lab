@@ -1,5 +1,5 @@
 # EMEA RHTE 2019: Learn how to run analytics and ML in OCP4 and Ceph Object storage with Rook.io
-
+JR
 ## Prequisites
 
 * OpenShift 4 environment
