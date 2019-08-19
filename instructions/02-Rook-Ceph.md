@@ -106,6 +106,7 @@ Install 'nmap' and 's3cmd' tools.
 sudo su -
 yum -y install nmap
 pip install s3cmd
+exit ## from now on continue as the normal user again
 ```
 
 Check with 'nmap' that the RGW service is listening and are available on the default ports '80' and '443'.
