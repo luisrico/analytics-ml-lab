@@ -122,11 +122,13 @@ Get the S3 'AccessKey' and 'SecretKey' that is randomly created for your RGW ser
 oc get secret -n rook-ceph | grep user
 rook-ceph-object-user-my-store-demo   kubernetes.io/rook                    2      77m
 
- kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
-3LYD5EG2D55W4ULR3UOL ## This AccessKey is used when you configure your 's3cmd' tool. Your key will look different.
+kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
+3LYD5EG2D55W4ULR3UOL
+## This AccessKey is used when you configure your 's3cmd' tool. Your key will look different.
 
 kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
-dqPmcdYOOhhR5NF0XAyMgLsAGpadL3iEobJJ7iyk ## This SecretKey is used when you configure your 's3cmd' tool. Your key will look different.
+dqPmcdYOOhhR5NF0XAyMgLsAGpadL3iEobJJ7iyk
+## This SecretKey is used when you configure your 's3cmd' tool. Your key will look different.
 ```
 
 Configure the 's3cmd' tool to use your RGW Object Storage service with your AccessKey and SecretKey
@@ -149,7 +151,7 @@ Use HTTPS protocol [Yes]: No
 HTTP Proxy server name: ## Just hit ENTER
 
 
-The 's3cmd' configuration file will be stored in your home-dir with the hidden name .s3cfg
+## NOTE: The 's3cmd' configuration file will be stored in your home-dir with the hidden name .s3cfg
 ```
 
 Create your first S3 Object Storage bucket
@@ -164,16 +166,19 @@ s3cmd ls ## list available buckets
 Upload your /etc/hosts file as an object to the Ceph S3 Object Store
 
 ```
-s3cmd --host-bucket= put /etc/hosts s3://mybucket ## Copies /etc/hosts as the object hosts to the bucket
+s3cmd --host-bucket= put /etc/hosts s3://mybucket
 upload: '/etc/hosts' -> 's3://mybucket/hosts'  [1 of 1]
  159 of 159   100% in    0s     2.55 kB/s  done
+## Copies /etc/hosts as the object hosts to the bucket
 
-s3cmd ls --host-bucket= s3://mybucket ## lists the objects available in the bucket
+s3cmd ls --host-bucket= s3://mybucket
 2019-08-15 12:39       159   s3://mybucket/hosts
+## lists the objects available in the bucket
 
-s3cmd get s3://mybucket/hosts getfile --host-bucket= ## retrieves the object hosts and stores it as a file named getfile
+s3cmd get s3://mybucket/hosts getfile --host-bucket=
 download: 's3://mybucket/hosts' -> 'getfile'  [1 of 1]
  159 of 159   100% in    0s    12.15 kB/s  done
+## retrieves the object hosts and stores it as a file named getfile
 ```
 
 Upload the contents of a whole directory, note that the files are automatically chopped into smaller objects.
@@ -195,7 +200,9 @@ du -sh *
 18M	etc9.tar
 
 cd ..
-s3cmd put -r put_test/ --host-bucket= s3://mybucket ## recursively puts all files from the put_test directory as objects in the Ceph S3 Object Storage bucket
+s3cmd put -r put_test/ --host-bucket= s3://mybucket
+## recursively puts all files from the put_test directory as objects in the Ceph S3 Object Storage bucket
+
 upload: 'put_test/etc0.tar' -> 's3://mybucket/etc0.tar'  [part 1 of 2, 15MB] [1 of 11]
  15728640 of 15728640   100% in    0s    41.29 MB/s  done
 upload: 'put_test/etc0.tar' -> 's3://mybucket/etc0.tar'  [part 2 of 2, 2MB] [1 of 11]
