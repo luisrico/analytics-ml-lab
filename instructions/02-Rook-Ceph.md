@@ -8,15 +8,16 @@ cd analytics-ml-lab/rook/
 ## Setup security contexts and deploy rook-ceph operator
 
 First, we have to create a Security Context Contraints (SCC) called "rook-ceph", 
-to let Rook operator have extra capabilities with several Service accounts.
+to let Rook operator have extra capabilities with several Service accounts. That is done 
+using a common.yaml to provide all things required in OpenShift for Rook operator.
 Then, we can create operator Rook.io. This will create rook-ceph-system namespace/project 
 to host rook operator resources. It will create one rook-ceph-operator pod in the 
 newly created rook-ceph-system project/namespace, plus 2 pods per Openshift worker node: 
 1 rook-ceph-agent + 1 rook-discoverer.
  
 ```
-oc create -f scc.yaml
-oc create -f operator.yaml
+oc create -f common.yaml
+oc create -f operator-openshift.yaml
 watch oc get pods -n rook-ceph-system -o wide
 ```
 
@@ -54,11 +55,11 @@ ceph osd tree
 ## Create object storage service
 
 For Ceph Object storage, it's needed to have Rados Gateway (RGW) components, able to translate access 
-through http/https using S3 API to Ceph RADOS. With object.yaml, 2 RGW pods are deployed. Watch and wait
+through http/https using S3 API to Ceph RADOS. With object-openshift.yaml, 2 RGW pods are deployed. Watch and wait
 until they are in Running state.
 
 ```
-oc create -f object.yaml
+oc create -f object-openshift.yaml
 watch oc get pods -n rook-ceph -o wide
 ```
 
