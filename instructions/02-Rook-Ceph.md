@@ -78,7 +78,7 @@ and SecretKey required for S3 access.
 ```
 oc project my-analytics
 oc get secret -n rook-ceph rook-ceph-object-user-my-store-demo -o yaml | \
-              egrep -v 'uid|namespace|selfLink|creation|resourceVersion' | \
+              egrep -v 'namespace|selfLink|creation|resourceVersion' | \
               sed 's/rook-ceph-object-user-my-store-demo/s3-user-demo/g' | \
               oc create -f -
 oc get secret s3-user-demo -o yaml
@@ -123,18 +123,18 @@ Get the S3 'AccessKey' and 'SecretKey' that is randomly created for your RGW ser
 oc get secret -n rook-ceph | grep user
 rook-ceph-object-user-my-store-demo   kubernetes.io/rook                    2      77m
 
-kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
+oc -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
 3LYD5EG2D55W4ULR3UOL
 ## This AccessKey is used when you configure your 's3cmd' tool. Your key will look different.
 
-kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
+oc -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
 dqPmcdYOOhhR5NF0XAyMgLsAGpadL3iEobJJ7iyk
 ## This SecretKey is used when you configure your 's3cmd' tool. Your key will look different.
 ```
 
 Configure the 's3cmd' tool to use your RGW Object Storage service with your AccessKey and SecretKey
 ```
-s3cmd —configure
+s3cmd --configure
 ...
 Access Key []: ## Enter your key from above
 Secret Key []: ## Enter your key from above
