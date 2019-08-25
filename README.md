@@ -9,6 +9,8 @@
 
 ## Remove cpu and memory limits from default quota
 
+Check if there are any cpu and memory limits to default users, and remove them
+
 ```
 oc edit userquota default
 ```
