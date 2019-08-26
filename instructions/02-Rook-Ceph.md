@@ -46,10 +46,10 @@ oc create -f toolbox.yaml
 oc get pods -n rook-ceph
 oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
 
-ceph health
-ceph status
-ceph osd status
-ceph osd tree
+  ceph health
+  ceph status
+  ceph osd status
+  ceph osd tree
 ```
 
 ## Create object storage service
@@ -263,4 +263,52 @@ s3cmd ls s3://mybucket --host-bucket=
 2019-08-15 12:45  18186240   s3://mybucket/etc8.tar
 2019-08-15 12:45  18186240   s3://mybucket/etc9.tar
 2019-08-15 12:39       159   s3://mybucket/hosts
+```
+
+## Upgrade seamlessly Ceph Cluster with Rook operator 
+
+Take benefit of Rook.io operator management lifecycle and request Rook to execute an automatic
+rolling upgrade to your Ceph Cluster. For that, you have to edit the CRD of your CephCluster 
+to change the tag number of the version. When editing Ceph cluster replace in the vi editor 
+image: ceph/ceph:v14.2.1-20190430 with image: ceph/ceph:v14.2.2-20190722
+Check the current Ceph version in the toolbox, before and after the upgrade. 
+After changing version, watch the process of how Rook upgrades pods one by one starting with Monitors.
+
+
+```
+oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
+  ceph version
+  exit
+oc edit CephCluster -n rook-ceph
+
+watch oc get pods -n rook-ceph
+
+oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
+  ceph version
+  exit
+```
+
+## Use Ceph upstream dashboard to monitor health and performance of your Ceph Cluster
+
+Ceph cluster deployed with upstream Rook operator provides a Ceph dashboard to monitor 
+alerts and real time performance metrics.
+To use it, we have to configure a RGW user to give access to dashboard to our object 
+storage part, expose the route of the dashboard and find out the password of admin user
+
+```
+
+oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
+  radosgw-admin user create --uid=dashboard --display-name=dashboard --access-key 123456 --secret-key 123456 --system
+  ceph dashboard set-rgw-api-user-id dashboard
+  ceph dashboard set-rgw-api-ssl-verify False
+  ceph dashboard set-rgw-api-scheme http
+  ceph dashboard set-rgw-api-access-key 123456
+  ceph dashboard set-rgw-api-secret-key 123456
+  exit
+  
+oc get secret -n rook ceph rook-ceph-dashboard-password -o yaml | grep "password:" | awk '{print $2}' | base64 --decode
+
+oc create route passthrough rook-ceph-dashboard --service=rook-ceph-mgr-dashboard --port https-dashboard
+oc get route
+
 ```
