@@ -1,0 +1,52 @@
+- name: Create the Openshift namespace 
+  shell: |
+          oc new-project my-analytics
+          oc new-build --name=openshift-spark-py36-inc https://github.com/mmgaggle/openshift-spark#wip-ubi \
+             --context-dir=openshift-spark-build-inc-py36 \
+             --strategy=docker
+  ignore_errors: true
+
+- include_tasks: ./wait_for_deploy.yml
+  vars:
+    app_to_check: "openshift.io/build.name=openshift-spark-py36-inc-1"
+  static: no
+
+- name: Create the Openshift namespace
+  shell: |
+          oc new-build --name=openshift-spark-py36 \
+             -i openshift-spark-py36-inc:latest \
+             -e SPARK_URL=http://mmgaggle-bd.s3.amazonaws.com/spark-2.3.2-bin-hadoop-2.8.5.tgz \
+             -e SPARK_MD5_URL=http://mmgaggle-bd.s3.amazonaws.com/spark-2.3.2-bin-hadoop-2.8.5.tgz.md5 \
+             --binary
+          oc start-build openshift-spark-py36
+  ignore_errors: true
+
+- include_tasks: ./wait_for_deploy.yml
+  vars:
+    app_to_check: "openshift.io/build.name=openshift-spark-py36-1"
+  static: no
+
+- name: Create the jupyter-notebook builds
+  shell: |
+          oc new-build --name=jupyter-notebook \
+             https://github.com/luisrico/analytics-ml-lab \
+             --context-dir=notebook \
+             -i openshift-spark-py36:latest \
+             --strategy=docker
+  ignore_errors: true
+
+- include_tasks: ./wait_for_deploy.yml
+  vars:
+    app_to_check: "openshift.io/build.name=jupyter-notebook-1"
+  static: no
+
+- name: pre_workload Tasks Complete
+  debug:
+    msg: "Task oc new-build --name=openshift-spark-py36-inc ... completed"
+
+#  vars:
+#    pod_to_wait:
+#      - catalog-service
+#
+#      oc get pods -l openshift.io/build.name=openshift-spark-py36-inc-1
+#      oc get pods -l openshift.io/build.name=openshift-spark-py36-inc-1 -o jsonpath='{.items[*].status.containerStatuses[].state.terminated.reason}{"\n"}'
