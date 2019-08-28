@@ -10,15 +10,14 @@ cd analytics-ml-lab/rook/
 First, we have to create a Security Context Contraints (SCC) called "rook-ceph", 
 to let Rook operator have extra capabilities with several Service accounts. That is done 
 using a common.yaml to provide all things required in OpenShift for Rook operator.
-Then, we can create operator Rook.io. This will create rook-ceph-system namespace/project 
-to host rook operator resources. It will create one rook-ceph-operator pod in the 
-newly created rook-ceph-system project/namespace, plus 2 pods per Openshift worker node: 
+Then, we can create operator Rook.io. It will create one rook-ceph-operator pod in the 
+newly created rook-ceph project/namespace, plus 2 pods per Openshift worker node: 
 1 rook-ceph-agent + 1 rook-discoverer.
  
 ```
 oc create -f common.yaml
 oc create -f operator-openshift.yaml
-watch oc get pods -n rook-ceph-system -o wide
+watch oc get pods -n rook-ceph -o wide
 ```
 
 ## Create Ceph cluster, with 3 monitors and with OSDs on every worker node
