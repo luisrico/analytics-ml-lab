@@ -50,13 +50,15 @@ oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
   ceph status
   ceph osd status
   ceph osd tree
+
+sh-4.2# exit ## Remember to exit from your toolbox pod
 ```
 
 ## Create object storage service
 
 For Ceph Object storage, it's needed to have Rados Gateway (RGW) components, able to translate access 
-through http/https using S3 API to Ceph RADOS. With object-openshift.yaml, 2 RGW pods are deployed. Watch and wait
-until they are in Running state.
+through http/https using S3 API to Ceph RADOS. With object-openshift.yaml, 1 RGW pod is deployed. Watch and wait
+until it is in Running state.
 
 ```
 oc create -f object-openshift.yaml
@@ -106,6 +108,7 @@ Install 'nmap' and 's3cmd' tools.
 ```
 sudo su -
 yum -y install nmap
+yum -y install python-pip python-wheel
 pip install s3cmd
 exit ## from now on continue as the normal user again
 ```
