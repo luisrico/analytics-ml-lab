@@ -21,6 +21,7 @@ No dependencies
 
 Example Playbook
 ----------------
+How to use the role in a playbook
 ```
 - name: Starting build images
   hosts: localhost
