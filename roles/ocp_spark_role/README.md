@@ -21,23 +21,20 @@ No dependencies
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
+```
 - name: Starting build images
   hosts: localhost
   pre_tasks:
     - name: Builds messages
       debug:
         msg: "Builds in progress"
-
   roles:
   - ocp_spark_role
-
   post_tasks:
     - name: Post message
       debug:
         msg: "Builds completed"
+```
 
 License
 -------
