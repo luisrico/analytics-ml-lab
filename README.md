@@ -7,13 +7,6 @@
 
 ## Initial steps
 
-## Remove cpu and memory limits from default quota
-
-Check if there are any cpu and memory limits to default users, and remove them
-
-```
-oc edit userquota default
-```
 
 Log in the clientvm through ssh with the credentials provided and git clone this 
 repository to get all yml files for creating rook operator, ceph clusters, and jupyter notebook.
