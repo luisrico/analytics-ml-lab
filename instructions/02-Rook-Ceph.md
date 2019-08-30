@@ -143,9 +143,9 @@ Access Key []: ## Enter your key from above
 Secret Key []: ## Enter your key from above
 Default Region [US]: ## Just hit ENTER
 ...
-S3 Endpoint []: ## Enter your RGW service route; example: rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com
+S3 Endpoint []: ## Enter your RGW service route: rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com
 ...
-DNS-style bucket+hostname:port template for accessing a bucket []: ## example: %(bucket)s.rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com
+DNS-style bucket+hostname:port template for accessing a bucket []: rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com
 ...
 Encryption password: ## Just hit ENTER
 Path to GPG program [/usr/bin/gpg]: ## Just hit ENTER
@@ -160,7 +160,7 @@ HTTP Proxy server name: ## Just hit ENTER
 
 Create your first S3 Object Storage bucket
 ```
-s3cmd mb --host-bucket= s3://mybucket
+s3cmd mb s3://mybucket
 Bucket 's3://mybucket/' created
 
 s3cmd ls ## list available buckets
@@ -170,16 +170,16 @@ s3cmd ls ## list available buckets
 Upload your /etc/hosts file as an object to the Ceph S3 Object Store
 
 ```
-s3cmd --host-bucket= put /etc/hosts s3://mybucket
+s3cmd put /etc/hosts s3://mybucket
 upload: '/etc/hosts' -> 's3://mybucket/hosts'  [1 of 1]
  159 of 159   100% in    0s     2.55 kB/s  done
 ## Copies /etc/hosts as the object hosts to the bucket
 
-s3cmd ls --host-bucket= s3://mybucket
+s3cmd ls s3://mybucket
 2019-08-15 12:39       159   s3://mybucket/hosts
 ## lists the objects available in the bucket
 
-s3cmd get s3://mybucket/hosts getfile --host-bucket=
+s3cmd get s3://mybucket/hosts getfile
 download: 's3://mybucket/hosts' -> 'getfile'  [1 of 1]
  159 of 159   100% in    0s    12.15 kB/s  done
 ## retrieves the object hosts and stores it as a file named getfile
@@ -204,7 +204,7 @@ du -sh *
 18M	etc9.tar
 
 cd ..
-s3cmd put -r put_test/ --host-bucket= s3://mybucket
+s3cmd put -r put_test/ s3://mybucket
 ## recursively puts all files from the put_test directory as objects in the Ceph S3 Object Storage bucket
 
 upload: 'put_test/etc0.tar' -> 's3://mybucket/etc0.tar'  [part 1 of 2, 15MB] [1 of 11]
@@ -252,7 +252,7 @@ upload: 'put_test/etc9.tar' -> 's3://mybucket/etc9.tar'  [part 1 of 2, 15MB] [11
 upload: 'put_test/etc9.tar' -> 's3://mybucket/etc9.tar'  [part 2 of 2, 2MB] [11 of 11]
  2457600 of 2457600   100% in    0s    13.81 MB/s  done
  
-s3cmd ls s3://mybucket --host-bucket=
+s3cmd ls s3://mybucket
 2019-08-15 12:45  18186240   s3://mybucket/etc0.tar
 2019-08-15 12:45  18186240   s3://mybucket/etc1.tar
 2019-08-15 12:45  18186240   s3://mybucket/etc10.tar
