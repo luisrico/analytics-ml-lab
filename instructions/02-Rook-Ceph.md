@@ -115,7 +115,8 @@ exit ## from now on continue as the normal user again
 Check with 'nmap' that the RGW service is listening and are available on the default ports '80' and '443'.
 Use the route that you exposed in the previous step.
 ```
-nmap -v  rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com
+nmap -v  <Use the route you got in the previous step oc get routes>
+...
 PORT    STATE SERVICE
 80/tcp  open  http
 443/tcp open  https
@@ -308,7 +309,7 @@ oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
   ceph dashboard set-rgw-api-secret-key 123456
   exit
   
-oc get secret -n rook ceph rook-ceph-dashboard-password -o yaml | grep "password:" | awk '{print $2}' | base64 --decode
+oc get secret -n rook-ceph rook-ceph-dashboard-password -o yaml | grep "password:" | awk '{print $2}' | base64 --decode
 
 oc create route passthrough rook-ceph-dashboard --service=rook-ceph-mgr-dashboard --port https-dashboard
 oc get route
