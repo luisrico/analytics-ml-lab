@@ -17,15 +17,25 @@ git clone https://github.com/luisrico/analytics-ml-lab.git
 
 ## Base Images
 
-The first task is to build a set of images to use for deploying Apache Spark
-clusters and Jupyter Notebooks. Instructions for building images from scratch
-can be found [here](instructions/01-Base-Images.md).
+The lab has been deployed with a set of already built images to use for deploying Apache Spark
+clusters and Jupyter Notebooks. These images are in the already created project "my-analytics". 
+Check that all images have already been correctly created in the project/namespace "my-analytics". 
+You should find 3 PODs with Status "Completed":
+
+```
+oc get all -n my-analytics 
+``` 
+
+For your reference, the commands used for building those images from scratch can be 
+found [here](instructions/99-Base-Images.md). But, you DON'T have to execute those lengthy steps
+unless there was any error in the lab deployment.
 
 ## Ceph Cluster
 
-The second task is to deploy the Rook-Ceph operator and use it to deploy a Ceph
-cluster with an object storage service. Instructions [here](instructions/02-Rook-Ceph.md).
+The main task is to deploy the Rook-Ceph operator and use it to deploy a Ceph
+cluster with an object storage service. Instructions [here](instructions/01-Rook-Ceph.md).
 
 ## Jupyter Notebook
 
-The final task is to deploy a Jupyter Notebook. Instructions [here](instructions/03-Jupyter-Notebook.md).
+The final task is to deploy a Jupyter Notebook and run through it. 
+Instructions [here](instructions/02-Jupyter-Notebook.md).
