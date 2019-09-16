@@ -1,3 +1,5 @@
+# YOU DON'T NEED TO EXECUTE THESE STEPS IF LAB WAS CORRECTLY DEPLOYED
+
 # Notebook Images
 
 Create a new project to put our analytics stuff: 
