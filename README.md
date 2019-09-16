@@ -27,15 +27,15 @@ oc get all -n my-analytics
 ``` 
 
 For your reference, the commands used for building those images from scratch can be 
-found [here](instructions/99-Base-Images.md). But, you DON'T have to execute those lengthy steps
+found [here](instructions/01-Base-Images.md). But, you DON'T have to execute those lengthy steps
 unless there was any error in the lab deployment.
 
 ## Ceph Cluster
 
 The main task is to deploy the Rook-Ceph operator and use it to deploy a Ceph
-cluster with an object storage service. Instructions [here](instructions/01-Rook-Ceph.md).
+cluster with an object storage service. Instructions [here](instructions/02-Rook-Ceph.md).
 
 ## Jupyter Notebook
 
 The final task is to deploy a Jupyter Notebook and run through it. 
-Instructions [here](instructions/02-Jupyter-Notebook.md).
+Instructions [here](instructions/03-Jupyter-Notebook.md).
