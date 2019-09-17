@@ -132,27 +132,36 @@ _You should see an output similar to: `rook-ceph-object-user-my-store-demo`_
 oc -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
 ```
 `3LYD5EG2D55W4ULR3UOL`
-###### This AccessKey is used when you configure your `s3cmd` tool. Your key will look different.
+* _This AccessKey is used when you configure your `s3cmd` tool. Your key will look different._ 
 
 ```
 oc -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
 ```
 `dqPmcdYOOhhR5NF0XAyMgLsAGpadL3iEobJJ7iyk`
-###### This SecretKey is used when you configure your `s3cmd` tool. Your key will look different.
+* _This SecretKey is used when you configure your `s3cmd` tool. Your key will look different._
 
 Configure the `s3cmd` tool to use your RGW Object Storage service with your AccessKey and SecretKey
 ```
 s3cmd --configure
 ```
 _Enter your, `AccessKey` from above_
+
 _Enter your, `SecretKey` from above_
+
 _For Default Region, Just hit `ENTER`_
+
 _S3 Endpoint, `Enter your RGW service route from above`_
+
 _DNS-style bucket+hostname, `Enter your RGW service route from above`_
+
 _Encryption password, Just hit `ENTER`_
+
 _Path to GPG program [/usr/bin/gpg], Just hit `ENTER`_
+
 _Use HTTPS protocol, `No`_
+
 _HTTP Proxy server name, Just hit `ENTER`_
+
 
 
 ###### NOTE: The `s3cmd` configuration file will be stored in your home-dir with the hidden name `.s3cfg`
