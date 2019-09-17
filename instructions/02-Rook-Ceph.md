@@ -94,13 +94,13 @@ First of all, we expose the RGW service to be able to access it from our client-
 ```
 oc get svc -n rook-ceph | grep rgw
 ```
-Take note: your RGW service should be namned: `rook-ceph-rgw-my-store`
+_Take note: your RGW service should be namned: `rook-ceph-rgw-my-store`_
 Then expose your RGW service.
 ```
 oc -n rook-ceph expose svc/rook-ceph-rgw-my-store
 ```
-Verify and take note of your exposed route, as it will be used when configuring `s3cmd`.
-It will look similar to this: `rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com`
+_Verify and take note of your exposed route, as it will be used when configuring `s3cmd`._
+_It will look similar to this: `rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com`_
 ```
 oc get routes -n rook-ceph
 ```
@@ -113,38 +113,38 @@ yum -y install python-pip python-wheel
 pip install s3cmd
 exit
 ```
-# from now on continue as the normal user again
+_from now on continue as the normal user again_
 
 Check with `nmap` that the RGW service is listening and are available on the default ports '80' and '443'.
-Use the route that you exposed in the previous step.
+_Use the route that you exposed in the previous step._
 ```
-nmap -v  <Use the route you got in the previous step oc get routes>
+nmap -v rook-ceph-rgw-my-store-rook-ceph.apps.cluster-vienna-a965.vienna-a965.openshiftworkshop.com
 ```
-You should see your RGW service responding on ports 80 and 443.
+_You should see your RGW service responding on ports 80 and 443._
 
 Get the S3 'AccessKey' and 'SecretKey' that is randomly created for your RGW service.
 ```
 oc get secret -n rook-ceph | grep user
 ```
-You should see an output similar to: `rook-ceph-object-user-my-store-demo`
+_You should see an output similar to: `rook-ceph-object-user-my-store-demo`_
 
 ```
 oc -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
 ```
 `3LYD5EG2D55W4ULR3UOL`
-# This AccessKey is used when you configure your `s3cmd` tool. Your key will look different.
+###### This AccessKey is used when you configure your `s3cmd` tool. Your key will look different.
 
 ```
 oc -n rook-ceph get secret rook-ceph-object-user-my-store-demo -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
 ```
 `dqPmcdYOOhhR5NF0XAyMgLsAGpadL3iEobJJ7iyk`
-# This SecretKey is used when you configure your `s3cmd` tool. Your key will look different.
+###### This SecretKey is used when you configure your `s3cmd` tool. Your key will look different.
 
 Configure the `s3cmd` tool to use your RGW Object Storage service with your AccessKey and SecretKey
 ```
 s3cmd --configure
 ```
-Enter your, `AccessKey` from above
+_Enter your, `AccessKey` from above
 Enter your, `SecretKey` from above
 For Default Region, Just hit `ENTER`
 S3 Endpoint, `Enter your RGW service route from above`
@@ -152,10 +152,10 @@ DNS-style bucket+hostname, `Enter your RGW service route from above`
 Encryption password, Just hit `ENTER`
 Path to GPG program [/usr/bin/gpg], Just hit `ENTER`
 Use HTTPS protocol, `No`
-HTTP Proxy server name, Just hit `ENTER`
+HTTP Proxy server name, Just hit `ENTER`_
 
 
-# NOTE: The `s3cmd` configuration file will be stored in your home-dir with the hidden name `.s3cfg`
+###### NOTE: The `s3cmd` configuration file will be stored in your home-dir with the hidden name `.s3cfg`
 
 Create your first S3 Object Storage bucket
 ```
@@ -172,19 +172,19 @@ Upload your `/etc/hosts` file as an object to the Ceph S3 Object Store
 s3cmd put /etc/hosts s3://mybucket
 ```
 
-# Copies /etc/hosts as the object hosts to the bucket
+_Copies /etc/hosts as the object hosts to the bucket_
 
 ```
 s3cmd ls s3://mybucket
 ```
 
-# lists the objects available in the bucket
+_lists the objects available in the bucket_
 
 ```
 s3cmd get s3://mybucket/hosts getfile
 ```
 
-# retrieves the object hosts and stores it as a file named getfile
+_retrieves the object hosts and stores it as a file named getfile_
 
 Upload the contents of a whole directory, note that the files are automatically chopped into smaller objects.
 
@@ -199,7 +199,7 @@ cd ..
 s3cmd put -r put_test/ s3://mybucket
 ```
 
-# recursively puts all files from the put_test directory as objects in the Ceph S3 Object Storage bucket
+_recursively puts all files from the put_test directory as objects in the Ceph S3 Object Storage bucket_
 
 ```
 s3cmd ls s3://mybucket
