@@ -94,12 +94,12 @@ First of all, we expose the RGW service to be able to access it from our client-
 ```
 oc get svc -n rook-ceph | grep rgw
 ```
-rook-ceph-rgw-my-store    ClusterIP   172.30.51.4      <none>        8000/TCP   23m
+>rook-ceph-rgw-my-store    ClusterIP   172.30.51.4      <none>        8000/TCP   23m
 
 ```
 oc -n rook-ceph expose svc/rook-ceph-rgw-my-store
 ```
-route.route.openshift.io/rook-ceph-rgw-my-store exposed
+>route.route.openshift.io/rook-ceph-rgw-my-store exposed
 
 ```
 oc get routes -n rook-ceph
