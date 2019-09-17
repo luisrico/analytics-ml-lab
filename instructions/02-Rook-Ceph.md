@@ -96,9 +96,9 @@ oc get svc -n rook-ceph | grep rgw
 <style
   type="text/css">
 p {color:blue;}
-</style>
 <p>rook-ceph-rgw-my-store    ClusterIP   172.30.51.4      <none>        8000/TCP   23m
 </p>
+</style>
 
 oc -n rook-ceph expose svc/rook-ceph-rgw-my-store
 route.route.openshift.io/rook-ceph-rgw-my-store exposed
