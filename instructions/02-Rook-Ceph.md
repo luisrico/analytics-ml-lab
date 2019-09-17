@@ -88,12 +88,17 @@ oc get secret s3-user-demo -o yaml
 
 ## Install 's3cmd' & 'nmap' tools to test and play with the Object Storage gateway access
 
-An easy way to interact with an S3 Object Storage interface is to use the 's3cmd' tool. There are plenty of tools available out there, that you can explore on your own another time. The same thing with 'nmap', that's just one convenient way to check which ports a remote service is listening on.
+An easy way to interact with an S3 Object Storage interface is to use the `s3cmd` tool. There are plenty of tools available out there, that you can explore on your own another time. The same thing with `nmap`, that's just one convenient way to check which ports a remote service is listening on.
 
 First of all, we expose the RGW service to be able to access it from our client-vm.
 ```
 oc get svc -n rook-ceph | grep rgw
-rook-ceph-rgw-my-store    ClusterIP   172.30.51.4      <none>        8000/TCP   23m
+<style
+  type="text/css">
+p {color:blue;}
+</style>
+<p>rook-ceph-rgw-my-store    ClusterIP   172.30.51.4      <none>        8000/TCP   23m
+</p>
 
 oc -n rook-ceph expose svc/rook-ceph-rgw-my-store
 route.route.openshift.io/rook-ceph-rgw-my-store exposed
