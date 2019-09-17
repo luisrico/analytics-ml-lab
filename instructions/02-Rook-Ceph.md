@@ -144,15 +144,15 @@ Configure the `s3cmd` tool to use your RGW Object Storage service with your Acce
 ```
 s3cmd --configure
 ```
-_Enter your, `AccessKey` from above
-Enter your, `SecretKey` from above
-For Default Region, Just hit `ENTER`
-S3 Endpoint, `Enter your RGW service route from above`
-DNS-style bucket+hostname, `Enter your RGW service route from above`
-Encryption password, Just hit `ENTER`
-Path to GPG program [/usr/bin/gpg], Just hit `ENTER`
-Use HTTPS protocol, `No`
-HTTP Proxy server name, Just hit `ENTER`_
+_Enter your, `AccessKey` from above_
+_Enter your, `SecretKey` from above_
+_For Default Region, Just hit `ENTER`_
+_S3 Endpoint, `Enter your RGW service route from above`_
+_DNS-style bucket+hostname, `Enter your RGW service route from above`_
+_Encryption password, Just hit `ENTER`_
+_Path to GPG program [/usr/bin/gpg], Just hit `ENTER`_
+_Use HTTPS protocol, `No`_
+_HTTP Proxy server name, Just hit `ENTER`_
 
 
 ###### NOTE: The `s3cmd` configuration file will be stored in your home-dir with the hidden name `.s3cfg`
