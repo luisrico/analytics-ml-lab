@@ -257,7 +257,7 @@ oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
   
 oc get secret -n rook-ceph rook-ceph-dashboard-password -o yaml | grep "password:" | awk '{print $2}' | base64 --decode
 
-oc create route passthrough rook-ceph-dashboard --service=rook-ceph-mgr-dashboard --port https-dashboard
-oc get route
+oc create route passthrough rook-ceph-dashboard -n rook-ceph --service=rook-ceph-mgr-dashboard --port https-dashboard
+oc get route -n rook-ceph
 
 ```
