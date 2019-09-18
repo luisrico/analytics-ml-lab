@@ -26,8 +26,10 @@ Now, let's define the Ceph cluster we want Rook operator to deploy using cluster
 cluster.yml to see the definition of Ceph Cluster. As per limitations of lab environment, Ceph pods 
 will use HostPath resources in worker nodes at /var/lib/rook, instead of dedicated disks. For production
 environments, dedicated disks will be required for Monitor rocksdb databases and for Object Storage Daemon 
-devices OSDs. All pods: 3 monitor, 1 manager, 4 osds are create in new rook-ceph namespace. Watch until all 
-components have been created, producing a Ceph Cluster completely deployed by Rook.
+devices OSDs. It will create:
+* All pods: 3 monitor, 1 manager, 4 osds in the rook-ceph namespace. 
+
+Watch until all components have been created, producing a Ceph Cluster completely deployed by Rook.
 
 ```
 cat cluster.yml
