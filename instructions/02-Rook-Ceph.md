@@ -59,8 +59,10 @@ sh-4.2# exit ## Remember to exit from your toolbox pod
 ## Create object storage service
 
 For Ceph Object storage, it's needed to have Rados Gateway (RGW) components, able to translate access 
-through http/https using S3 API to Ceph RADOS. With object-openshift.yaml, 1 RGW pod is deployed. Watch and wait
-until it is in Running state.
+through http/https using S3 API to Ceph RADOS. With object-openshift.yaml create your RGW pod. 
+* 1 RGW pod is deployed.
+
+Watch and wait until it is in Running state.
 
 ```
 oc create -f object-openshift.yaml
