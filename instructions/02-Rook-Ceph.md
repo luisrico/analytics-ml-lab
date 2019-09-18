@@ -247,7 +247,7 @@ oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
 Ceph cluster deployed with upstream Rook operator provides a Ceph dashboard to monitor 
 alerts and real time performance metrics.
 To use it, we have to configure a RGW user to give access to dashboard to our object 
-storage part, expose the route of the dashboard and find out the password of admin user
+storage part, expose the route of the dashboard and find out the password of `admin` user
 
 ```
 
@@ -261,8 +261,11 @@ oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
   exit
   
 oc get secret -n rook-ceph rook-ceph-dashboard-password -o yaml | grep "password:" | awk '{print $2}' | base64 --decode
+`BBs2F48IDf` # use this password to login to the dashboard (your password will look different)
 
 oc create route passthrough rook-ceph-dashboard -n rook-ceph --service=rook-ceph-mgr-dashboard --port https-dashboard
 oc get route -n rook-ceph
+
+# use this route to login to the Ceph dashboard from a browser. i.e. https://rook-ceph-dashboard-rook-ceph.apps.cluster-7bde.7bde.sandbox140.opentlc.com (remember to replace with your route)
 
 ```
