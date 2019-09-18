@@ -25,15 +25,15 @@ Once, our app and pod are ready and running, we can create a route to access the
 And copy the route created to a browser.
 
 ```
-oc get pods
+watch oc get pods # wait until jupyter-notebook pod is created
 oc expose svc/jupyter-notebook
 oc get route jupyter-notebook
 ```
 
 ## Use browser to execute the Jupyter Notebook
 
-Use the password: "developer" to access the files, and double click in the file named:
-"sparksql-tensorflow.ipynb". Then a new browser tab will open and you will be able to 
-push button "Run" to execute all the actions in the notebook and see the results 
+Use the password: `developer` to access the files, and double click in the file named:
+`sparksql-tensorflow.ipynb`. Then a new browser tab will open and you will be able to 
+push button `Run` to execute all the actions in the notebook and see the results 
 as a Data Scientist pro... Enjoy the experience!
 
