@@ -30,6 +30,7 @@ devices OSDs. It will create:
 * All pods: 3 monitor, 1 manager, 4 osds in the rook-ceph namespace. 
 
 Watch until all components have been created, producing a Ceph Cluster completely deployed by Rook.
+>_Note: the `rook-ceph-osd-prepare` pods are READY: 0/2, which is OK._
 
 ```
 cat cluster.yml
