@@ -224,7 +224,7 @@ s3cmd ls s3://mybucket
 Take benefit of Rook.io operator management lifecycle and request Rook to execute an automatic
 rolling upgrade to your Ceph Cluster. For that, you have to edit the CRD of your CephCluster 
 to change the tag number of the version. When editing Ceph cluster replace in the vi editor 
-`image: ceph/ceph:v14.2.1-20190430` with `image: ceph/ceph:v14.2.2-20190722`
+`image: ceph/ceph:v14.2.1-20190430` with **`image: ceph/ceph:v14.2.2-20190722`**
 Check the current Ceph version in the toolbox, before and after the upgrade. 
 After changing version, watch the process of how Rook upgrades pods one by one starting with `rook-ceph-mon` then `rook-ceph-mgr` , `rook-ceph-osd` and finally `rook-ceph-rgw`.
 
@@ -247,7 +247,7 @@ oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
 Ceph cluster deployed with upstream Rook operator provides a Ceph dashboard to monitor 
 alerts and real time performance metrics.
 To use it, we have to configure a RGW user to give access to dashboard to our object 
-storage part, expose the route of the dashboard and find out the password of `admin` user
+storage part, expose the route of the dashboard and find out the password of **`admin`** user
 
 ```
 
@@ -261,7 +261,7 @@ oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
   exit
   
 oc get secret -n rook-ceph rook-ceph-dashboard-password -o yaml | grep "password:" | awk '{print $2}' | base64 --decode
-`BBs2F48IDf` # use this password to login to the dashboard (your password will look different)
+`BBs2F48IDf`# use this password to login to the dashboard (your password will look different)
 
 oc create route passthrough rook-ceph-dashboard -n rook-ceph --service=rook-ceph-mgr-dashboard --port https-dashboard
 oc get route -n rook-ceph
