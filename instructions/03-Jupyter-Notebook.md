@@ -34,6 +34,6 @@ oc get route jupyter-notebook
 
 Use the password: `developer` to access the files, and double click in the file named:
 `sparksql-tensorflow.ipynb`. Then a new browser tab will open and you will be able to 
-push button `Run` to execute all the actions in the notebook and see the results 
+push button `Run`  (or click Shift + Enter) to execute all the actions in the notebook and see the results 
 as a Data Scientist pro... Enjoy the experience!
 
