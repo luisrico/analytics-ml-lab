@@ -270,7 +270,7 @@ oc create route passthrough rook-ceph-dashboard -n rook-ceph --service=rook-ceph
 oc get route -n rook-ceph
 
 ```
-Use this route to login to the Ceph dashboard from a browser. i.e. https://rook-ceph-dashboard-rook-ceph.apps.cluster-7bde.7bde.sandbox140.opentlc.com (remember to replace with your route)
+Use this route to login to the Ceph dashboard from a browser. i.e. `https://rook-ceph-dashboard-rook-ceph.apps.cluster-7bde.7bde.sandbox140.opentlc.com` (remember to replace with your route and make sure to use **https://** )
 
 ##### Now continue to the next lab
 Instructions 03-Jupyter-Notebook https://github.com/luisrico/analytics-ml-lab/blob/master/instructions/03-Jupyter-Notebook.md
