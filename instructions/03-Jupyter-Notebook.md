@@ -36,9 +36,21 @@ Use the password: `developer` to access the files, and double click in the file 
 `sparksql-tensorflow.ipynb`. Then a new browser tab will open and you will be able to 
 push button `Run`  (or click Shift + Enter) to execute all the actions in the notebook and see the results 
 as a Data Scientist pro.
-Please wait for the tasks to be completed before running the next task, tasks will show **[\*]**  when running and show the task number when finished.
+Please wait for the steps to be completed before running the next step, steps will show **[\*]**  when running and show the step number when finished.
 
-At step **[10]** data will be ingested into the ceph cluster and you can verify the activity in the ceph-dashboard
+At step **[10]** data will be ingested into the ceph cluster and as this will take several minutes you have the ability to check activity in the ceph-dashboard
+
+After step **[10]** you can verify the contents in the bucket:
+
+```
+s3cmd ls s3://ceph-bucket/kube-metrics/
+.....
+2019-09-26 07:23         0   s3://ceph-bucket/kube-metrics/_SUCCESS
+2019-09-26 07:23   1074414   s3://ceph-bucket/kube-metrics/part-00000-4421b6da-d349-454a-b37f-7ef68f755b6f-c000.json.bz2
+2019-09-26 07:23   1075392   s3://ceph-bucket/kube-metrics/part-00001-4421b6da-d349-454a-b37f-7ef68f755b6f-c000.json.bz2
+2019-09-26 07:23   1079779   s3://ceph-bucket/kube-metrics/part-00002-4421b6da-d349-454a-b37f-7ef68f755b6f-c000.json.bz2
+.....
+```
 
 ... Enjoy the experience!
 
