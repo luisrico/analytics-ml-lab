@@ -12,7 +12,7 @@ to let Rook operator have extra capabilities with several Service accounts. That
 using a common.yaml to provide all things required in OpenShift for Rook operator.
 Then, we can create operator Rook.io. It will create: 
 * one rook-ceph-operator pod in the newly created rook-ceph project/namespace
-* plus 2 pods per Openshift worker node: 1 rook-ceph-agent + 1 rook-discoverer.
+* plus 2 pods per Openshift worker node: 1 rook-ceph-agent + 1 rook-discover.
 
 In total there will be 7 pods running, because we have 3 worker nodes.
  
