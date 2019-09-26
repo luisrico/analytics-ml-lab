@@ -35,5 +35,10 @@ oc get route jupyter-notebook
 Use the password: `developer` to access the files, and double click in the file named:
 `sparksql-tensorflow.ipynb`. Then a new browser tab will open and you will be able to 
 push button `Run`  (or click Shift + Enter) to execute all the actions in the notebook and see the results 
-as a Data Scientist pro... Enjoy the experience!
+as a Data Scientist pro.
+Please wait for the tasks to be completed before running the next task, tasks will show **[\*]**  when running and show the task number when finished.
+At step **[10]** data will be ingested into the ceph cluster and you can verify the activity in the ceph-dashboard
+
+... Enjoy the experience!
+
 
