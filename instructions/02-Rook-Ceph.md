@@ -47,7 +47,7 @@ Once created, rsh on it and execute some common ceph commands to see Ceph cluste
 
 ```
 oc create -f toolbox.yaml
-oc get pods -n rook-ceph
+oc get pods -n rook-ceph | grep tool
 oc rsh -n rook-ceph rook-ceph-tools-<pod-uuid-your-env>
 
   ceph health
