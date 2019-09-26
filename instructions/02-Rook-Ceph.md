@@ -225,7 +225,8 @@ s3cmd ls s3://mybucket
 
 Take benefit of Rook.io operator management lifecycle and request Rook to execute an automatic
 rolling upgrade to your Ceph Cluster. For that, you have to edit the CRD of your CephCluster 
-to change the tag number of the version. When editing Ceph cluster replace in the vi editor 
+to change the tag number of the version. 
+The `oc edit` command will automatically open the vi editor, replace the following line:
 `image: ceph/ceph:v14.2.1-20190430` with **`image: ceph/ceph:v14.2.2-20190722`**
 Check the current Ceph version in the toolbox, before and after the upgrade. 
 After changing version, watch the process of how Rook upgrades pods one by one starting with `rook-ceph-mon` then `rook-ceph-mgr` , `rook-ceph-osd` and finally `rook-ceph-rgw`.
