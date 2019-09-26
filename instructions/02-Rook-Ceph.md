@@ -13,6 +13,8 @@ using a common.yaml to provide all things required in OpenShift for Rook operato
 Then, we can create operator Rook.io. It will create: 
 * one rook-ceph-operator pod in the newly created rook-ceph project/namespace
 * plus 2 pods per Openshift worker node: 1 rook-ceph-agent + 1 rook-discoverer.
+
+In total there will be 7 pods running, because we have 3 worker nodes.
  
 ```
 oc create -f common.yaml
@@ -33,7 +35,7 @@ Watch until all components have been created, producing a Ceph Cluster completel
 >_Note: the `rook-ceph-osd-prepare` pods are READY: 0/2, which is OK._
 
 ```
-cat cluster.yml
+cat cluster.yaml
 oc create -f cluster.yaml
 watch oc get pods -n rook-ceph -o wide
 ```
