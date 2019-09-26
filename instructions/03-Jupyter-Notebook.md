@@ -25,7 +25,7 @@ Once, our app and pod are ready and running, we can create a route to access the
 And copy the route created to a browser.
 
 ```
-watch oc get pods # wait until jupyter-notebook pod is created
+watch oc get pods # wait until jupyter-notebook pod is running
 oc expose svc/jupyter-notebook
 oc get route jupyter-notebook
 ```
