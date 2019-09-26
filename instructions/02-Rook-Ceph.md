@@ -207,7 +207,7 @@ Upload the contents of a whole directory, note that the files are automatically 
 ```
 mkdir put_test
 cd put_test
-for i in 0 1 2 3 4 5 6 7 8 9 10; do  tar cf  etc$i.tar /etc ; done
+for i in 0 1 2 3 4 5 6 7 8 9 10; do sudo tar cf  etc$i.tar /etc ; done
 du -sh *
 ```
 ```
