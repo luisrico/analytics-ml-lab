@@ -5,8 +5,6 @@ problems. If there is any limit, let's remove it before deploying.
 
 ```
 $ oc get limits -o yaml
-```
-_```
 apiVersion: v1
 items:
 - apiVersion: v1
@@ -38,7 +36,7 @@ kind: List
 metadata:
   resourceVersion: ""
   selfLink: ""
-```_
+```
 
 ```
 $ oc delete limits my-analytics-core-resource-limits
