@@ -1,3 +1,53 @@
+## Remove any limits on the project / namespace my-analytics
+
+Some cluster admin default restrictions could make our jupyter pod to have memory allocation
+problems. If there is any limit, let's remove it before deploying.
+
+```
+$ oc get limits -o yaml
+```
+_`
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: LimitRange
+  metadata:
+    creationTimestamp: "2019-10-18T07:59:02Z"
+    name: my-analytics-core-resource-limits
+    namespace: my-analytics
+    resourceVersion: "175894"
+    selfLink: /api/v1/namespaces/my-analytics/limitranges/my-analytics-core-resource-limits
+    uid: 2618c27a-f17d-11e9-86b0-02862496ab38
+  spec:
+    limits:
+    - default:
+        cpu: 500m
+        memory: 1536Mi
+      defaultRequest:
+        cpu: 50m
+        memory: 256Mi
+      max:
+        cpu: "2"
+        memory: 6Gi
+      type: Container
+    - max:
+        cpu: "2"
+        memory: 12Gi
+      type: Pod
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+`_
+
+```
+$ oc delete limits my-analytics-core-resource-limits
+```
+_`limitrange "my-analytics-core-resource-limits" deleted`_
+
+
+
+
 ## Create and Deploy Jupyter Notebook
 
 Now, let's create a new application that will hold the Jupyter Notebook we are going 
